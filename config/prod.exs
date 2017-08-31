@@ -21,6 +21,11 @@ config :selleo_bot, SelleoBotWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :selleo_bot, SelleoBotWeb.Endpoint,
+  slack_command:     System.get_env("SLACK_COMMAND"),
+  slack_team_domain: System.get_env("SLACK_TEAM_DOMAIN"),
+  slack_team_id:     System.get_env("SLACK_TEAM_ID"),
+  slack_bot_token:   System.get_env("SLACK_BOT_TOKEN")
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

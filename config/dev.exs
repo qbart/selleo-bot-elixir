@@ -10,9 +10,7 @@ config :selleo_bot, SelleoBotWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+  check_origin: false
 
 # ## SSL Support
 #
@@ -49,10 +47,11 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :selleo_bot, SelleoBot.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "selleo_bot_dev",
-  hostname: "localhost",
-  pool_size: 10
+# config :selleo_bot, SelleoBot.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   username: "postgres",
+#   password: "postgres",
+#   database: "selleo_bot_dev",
+#   hostname: "localhost",
+#   pool_size: 10
+import_config "dev.secret.exs"

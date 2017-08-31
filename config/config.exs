@@ -6,16 +6,16 @@
 use Mix.Config
 
 # General application configuration
-config :selleo_bot,
-  ecto_repos: [SelleoBot.Repo]
+# config :selleo_bot#,
+  # ecto_repos: [SelleoBot.Repo]
 
 # Configures the endpoint
 config :selleo_bot, SelleoBotWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "aK9qvx2tGMKI5gHHeYJ9M665ZZi00PHKzXmbBI3hQFLGerfHE+0+hOhOoCZY/5WR",
-  render_errors: [view: SelleoBotWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: SelleoBot.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: SelleoBotWeb.ErrorView, accepts: ~w(html json)]
+  # pubsub: [name: SelleoBot.PubSub,
+  #          adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
