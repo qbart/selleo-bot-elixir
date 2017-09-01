@@ -12,8 +12,9 @@ defmodule SelleoBotApi.CommandController do
   ) do
     case get_handler(text) do
       {:ok, handler, params} ->
-        handler.handle(params, user_id, response_url)
-        say(conn, "Processing you request. Please wait.")
+        msg = handler.handle(params, user_id, response_url)
+        # say(conn, "Processing you request. Please wait.")
+        say(conn, msg)
 
       {:not_found} ->
         say(conn, "Command not found")

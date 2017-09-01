@@ -10,10 +10,10 @@ config :selleo_bot, SelleoBotWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :selleo_bot, SelleoBot.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "selleo_bot_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+# config :selleo_bot, SelleoBot.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   username: "postgres",
+#   password: "postgres",
+#   database: "selleo_bot_test",
+#   hostname: "localhost",
+#   pool: Ecto.Adapters.SQL.Sandbox
