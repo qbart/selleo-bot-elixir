@@ -6,10 +6,11 @@ defmodule SelleoBotApi.SlackRequestVerifier do
   end
 
   def call(conn, _opts) do
-    cmd     = get_config(:slack_command)
-    domain  = get_config(:slack_team_domain)
-    team_id = get_config(:slack_team_id)
-    token   = get_config(:slack_bot_token)
+    config  = Application.get_env(:selleo_bot, SelleoBotWeb.Endpoint)
+    cmd     = config[:slack_command]
+    domain  = config[:slack_team_domain]
+    team_id = config[:slack_team_id]
+    token   = config[:slack_bot_token]
 
     case conn.params do
 
@@ -27,12 +28,7 @@ defmodule SelleoBotApi.SlackRequestVerifier do
         conn
           |> send_resp(401, "Unauthorized")
           |> halt()
-
     end
-  end
-
-  defp get_config(key) do
-    Application.get_env(:selleo_bot, SelleoBotWeb.Endpoint)[key]
   end
 
 end
