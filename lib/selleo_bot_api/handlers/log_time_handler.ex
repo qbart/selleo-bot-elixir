@@ -8,7 +8,7 @@ defmodule SelleoBotApi.LogTimeHandler do
     def run(params) do
       result = parse_time_entries(params)
 
-      case validate(result) do
+      case validate(result, params) do
         {:ok, entries} ->
           {
             :ok,
@@ -21,7 +21,7 @@ defmodule SelleoBotApi.LogTimeHandler do
       end
     end
 
-    defp validate(entries) do
+    defp validate(entries, params) do
       valid = Enum.all? entries, fn(entry) ->
         entry != nil
       end
@@ -29,7 +29,7 @@ defmodule SelleoBotApi.LogTimeHandler do
       if valid do
         {:ok, entries}
       else
-        {:error, "Parsing error"}
+        {:error, "Parsing error:\n#{params}"}
       end
     end
 
