@@ -1,6 +1,6 @@
 defmodule SelleoBotApi.CommandController do
   use SelleoBotWeb, :controller
-  alias SelleoBotApi.{LogTimeHandler, Apis}
+  alias SelleoBotApi.{LogTimeHandler}
 
   def create(
     conn,
@@ -12,13 +12,12 @@ defmodule SelleoBotApi.CommandController do
   ) do
     case get_handler(text) do
       {:ok, handler, params} ->
-        Task.async fn -> handler.handle(params, user_id, response_url) end
+        spawn fn -> handler.handle(params, user_id, response_url) end
         say(conn, "Processing you request. Please wait.")
 
       {:not_found} ->
         say(conn, "Command not found")
     end
-
   end
 
   defp get_handler(text) do

@@ -18,7 +18,11 @@ defmodule SelleoBotApi.LogTimeHandler do
   end
 
   defp logtime(user, entries, response_url) do
-    Apis.Slack.post_response(response_url, "[WORK IN PROGRESS] #{user.email}", entries, :good)
+    result = Apis.Dm.create_time_entries(user.email, entries)
+    case result do
+      {:ok, response} -> Apis.Slack.post_response(response_url, "[WORK IN PROGRESS] #{user.email}", response, :good)
+      {:error, error} -> Apis.Slack.post_response(response_url, "Error: #{error.title}", error.details, :danger)
+    end
   end
 
 end
